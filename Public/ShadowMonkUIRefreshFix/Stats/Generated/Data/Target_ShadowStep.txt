@@ -1,0 +1,8 @@
+// depends on passive/boost from Should_CloakOfShadows_Monk to generate status changes
+
+new entry "Target_ShadowStep"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_ShadowStep"
+data "RequirementConditions" "HasActionResource('Obscured',1,0,false,false,context.Source)"
+data "RequirementEvents" "OnStatusApplied;OnStatusRemoved"

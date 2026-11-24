@@ -1,0 +1,26 @@
+// Target_ShadowStep also depends on this condition
+
+new entry "UnarmoredDefense_Monk"
+type "PassiveData"
+using "UnarmoredDefense_Monk"
+data "StatsFunctorContext" "OnObscurityChanged;OnCreate"
+data "StatsFunctors" "IF(not HasObscuredState(ObscuredState.Clear)):ApplyStatus(MONK_SHADOW_TRACKER, 100, -1);IF(HasObscuredState(ObscuredState.Clear)):RemoveStatus(MONK_SHADOW_TRACKER)"
+
+new entry "MONK_SHADOW_TRACKER"
+type "StatusData"
+data "StatusType" "BOOST"
+data "DisplayName" "hc04d0bf6g6803g4f6dg9908gcf18cf8b12e0;1"
+data "Description" "h93ab5d4ag9eaag4d38g961cg35f56836e10b;1""
+data "Icon" "PassiveFeature_Generic_Darkness"
+data "StackId" "MONK_SHADOW_TRACKER"
+data "Boosts" "ActionResource(Obscured, 1, 0);"
+data "RemoveConditions" "HasObscuredState(ObscuredState.Clear)"
+data "RemoveEvents" "OnObscurityChanged"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
+
+new entry "Shout_CloakOfShadows_Monk"
+type "SpellData"
+data "SpellType" "Shout"
+using "Shout_CloakOfShadows_Monk"
+data "RequirementConditions" "HasActionResource('Obscured',1,0,false,false,context.Source)"
+data "RequirementEvents" "OnStatusApplied;OnStatusRemoved"
